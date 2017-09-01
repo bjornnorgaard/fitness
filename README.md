@@ -5,12 +5,9 @@ Mandatory project for course ITTWEB at ASE.
 There are two main branches in this repository.
 
 * master
-* develop
-
-### master
 When integration testing is done, the 'develop' branch may be merge into 'master' with a pull-request. This is also the branch which should be reviewed by those assigned.
 
-### develop
+* develop
 For sharing working changes and simple integration. Seperate feature-development should not occour on this branch.
 
 ## Branch Naming
