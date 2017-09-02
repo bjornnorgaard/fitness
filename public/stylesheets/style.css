@@ -16,13 +16,36 @@ body {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+.exercise {
+    display: grid;
+    grid-template-areas:
+            "exercise-name exercise-name exercise-remove"
+            "exercise-description exercise-description exercise-description"
+            "exercise-sets exercise-reps empty";
+}
 
+.exercise-name {
+    grid-area: exercise-name;
+}
 
+.exercise-remove {
+    grid-area: exercise-remove;
+    justify-self: right;
+    padding-top: 17px;
+    padding-right: 1em;
+}
 
+.exercise-description {
+    grid-area: exercise-description;
+}
 
+.exercise-sets {
+    grid-area: exercise-sets;
+}
 
-
-
+.exercise-reps {
+    grid-area: exercise-reps;
+}
 
 
 
