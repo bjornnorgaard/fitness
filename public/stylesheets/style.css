@@ -1,8 +1,8 @@
 body {
     background-color: #dbdbdb;
     font: 14px "Microsoft JhengHei Light", Helvetica, Arial, sans-serif;
-    padding-right: 15%;
-    padding-left: 15%;
+    padding-right: 20%;
+    padding-left: 20%;
 }
 
 .card {
@@ -25,7 +25,19 @@ body {
     grid-gap: 1em;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1500px) {
+
+    body {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+    .workout-program {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 1100px) {
 
     body {
         padding-left: 10%;
@@ -37,9 +49,9 @@ body {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 750px) {
 
-    body{
+    body {
         padding: 0;
     }
 
@@ -48,8 +60,7 @@ body {
     }
 }
 
-
-@media (max-width: 650px) {
+@media (max-width: 750px) {
 
     .workout-program {
         grid-template-columns: 1fr;
