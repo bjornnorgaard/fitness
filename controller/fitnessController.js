@@ -13,7 +13,8 @@ module.exports.createWorkout = function (req, res) {
 };
 
 module.exports.postWorkout = function (req, res) {
-    console.log(req);
+    console.log(req.body.title);
+    res.status(200).send("OK");
 }
 
 module.exports.postExercise = function (req, res) {
