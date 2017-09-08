@@ -11,3 +11,11 @@ module.exports.createExercise = function (req, res) {
 module.exports.createWorkout = function (req, res) {
     res.render('workout', {title: "hello world"})
 };
+
+module.exports.postWorkout = function (req, res) {
+    console.log(req);
+}
+
+module.exports.postExercise = function (req, res) {
+    console.log(req);
+}
