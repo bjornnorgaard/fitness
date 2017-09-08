@@ -22,5 +22,5 @@ module.exports.postExercise = function (req, res) {
     console.log(req.body.description);
     console.log(req.body.reps);
     console.log(req.body.sets);
-    res.status(200).render('index');
+    res.status(200).redirect('/');
 }
