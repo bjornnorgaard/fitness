@@ -3,10 +3,10 @@ const router = express.Router();
 const controller = require('../controller/fitnessController');
 
 router.get('/', controller.index);
-router.get('/workout', controller.createWorkout);
-router.get('/exercise', controller.createExercise);
+router.get('/workout', controller.getWorkout);
+router.get('/exercise', controller.getExercise);
 
-router.post('/addworkout', controller.postWorkout);
-router.post('/addexercise', controller.postExercise);
+router.post('/workout', controller.postWorkout);
+router.post('/exercise', controller.postExercise);
 
 module.exports = router;
