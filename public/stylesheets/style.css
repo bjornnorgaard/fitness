@@ -114,6 +114,10 @@ input {
     width: 100%;
 }
 
+p {
+    margin-bottom: 0;
+}
+
 .blue {
     background-color: blue;
 }
