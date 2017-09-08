@@ -110,6 +110,10 @@ body {
     justify-content: center;
 }
 
+input {
+    width: 100%;
+}
+
 .blue {
     background-color: blue;
 }
