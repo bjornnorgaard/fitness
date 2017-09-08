@@ -1,6 +1,16 @@
 "use strict";
 
+var mongoClient = require('mongodb').MongoClient;
+
 module.exports.index = function (req, res) {
+    mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
+        if (err) return console.dir(err);
+
+        var collection = db.collection('workouts').find({}).toArray(function(err, res) {
+            console.log("derp" + res[1]);
+        });
+    });
+
     res.render('index', {title: "hello world"})
 };
 
@@ -13,8 +23,22 @@ module.exports.getWorkout = function (req, res) {
 };
 
 module.exports.postWorkout = function (req, res) {
-    console.log(req.body.title);
-    res.status(201).render('index');
+    mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
+    if (err) { return console.dir(err); }
+
+    var collection = db.collection('workouts');
+    var workout = { title: req.body.title }
+    collection.insert(workout, { w: 1}, function(err, res) {
+        if (err) {
+            console.log("Error: could not insert workout");
+        }
+        else {
+            console.log("Success: workout inserted successfully");
+        }
+    });
+});
+
+res.status(201).render('index');
 }
 
 module.exports.postExercise = function (req, res) {
