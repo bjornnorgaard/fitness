@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+    .page-title.card
+        h1 Exercise
+        form(method="post" action="addexercise")
+            p Name
+            input(type="text" name="title" placeholder="Squats")
+            br
+            p Description
+            input(type="text" name="description" placeholder="Bend your legs and do some stuff...")
+            br
+            p Sets
+            input(type="text" name="sets" placeholder="3")
+            br
+            p Reps
+            input(type="text" name="reps" placeholder="10")
+            br
+            br
+            input(type="submit" value="Submit")
