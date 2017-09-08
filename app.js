@@ -13,16 +13,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// Mongo setup
-var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://norgaard.io:27017");
-let db = mongoose.connection;
-db.on("error", function(err){
-    console.log("Failed to connect to MongoDB");
-    process.exit(1);
-});
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
