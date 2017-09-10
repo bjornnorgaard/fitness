@@ -13,7 +13,7 @@ __develop__
 For sharing working changes and simple integration. Seperate feature-development should not occour on this branch.
 
 ## Deployment
-Both master and develop branches are continiously deployed to heroku. 
+Both master and develop branches are continuously deployed to heroku. 
 
 [Link to master deploy](https://ittweb-fitness-prod.herokuapp.com/)  
 [Link to develop deploy](https://ittweb-fitness-dev.herokuapp.com/)
