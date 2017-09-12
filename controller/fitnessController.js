@@ -2,31 +2,26 @@
 var mongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 
+mongoose.connect("mongodb://norgaard.io:27017/fitness");
+
+var ExerciseSchema = {
+    id: Number,
+    workoutId: Number,
+    title: String,
+    description: String,
+    reps: String,
+    sets: String,
+};
+
+var WorkoutSchema = {
+    id: Number,
+    title: String
+};
+
+var WorkoutModel = mongoose.model("Workout", WorkoutSchema);
+var ExerciesModel = mongoose.model("Exercise", ExerciseSchema);
+
 module.exports.index = function (req, res) {
-    // mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
-    // if (err) return console.dir(err);
-
-    //     var collection = db.collection('workouts').find({}).toArray(function(err, res) {
-    //         console.log("derp" + res[1]);
-    //     });
-    // });
-
-    mongoose.connect("mongodb://norgaard.io:27017/fitness");
-
-    var exerciseSchema = mongoose.Schema({
-        id: Number,
-        title: String,
-        description: String,
-        Reps: String,
-        Sets: String,
-    });
-
-    var workoutSchema = mongoose.Schema({
-        id: Number,
-        title: String,
-        exercises: [exerciseSchema]
-    });
-
     res.render('index', {title: "hello world"})
 };
 
@@ -39,30 +34,38 @@ module.exports.getWorkout = function (req, res) {
 };
 
 module.exports.postWorkout = function (req, res) {
-    mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
-        if (err) {
-            return console.dir(err);
-        }
-
-        var collection = db.collection('workouts');
-        var workout = { title: req.body.title }
-        collection.insert(workout, { w: 1 }, function(err, res) {
-            if (err) {
-                console.log("Error: could not insert workout");
-            }
-            else {
-                console.log("Success: workout inserted successfully");
-            }
-        });
+    var workout = new WorkoutModel({
+        title: req.body.title,
+        id: req.body.id,
     });
 
-    res.status(201).render('index');
+    workout.save(function(err) {
+        if (err) {
+            console.log("postWorkout: " + err);
+        } else {
+            console.log("postWorkout: successfully saved: " + workout);
+        }
+    });
+
+    res.status(201).redirect('/');
 }
 
 module.exports.postExercise = function (req, res) {
-    var title = req.body.title;
-    var description = req.body.description;
-    var reps = req.body.reps;
-    var sets = req.body.sets;
+    var exercise = new ExerciesModel({
+        title: req.body.title,
+        workoutId: req.body.workoutId,
+        description: req.body.description,
+        reps: req.body.reps,
+        sets: req.body.sets
+    });
+
+    exercise.save(function(err) {
+        if (err) {
+            console.log("postExercise: " + err);
+        } else {
+            console.log("postExercise: successfully saved: " + exercise);
+        }
+    });
+
     res.status(201).redirect('/');
 }
