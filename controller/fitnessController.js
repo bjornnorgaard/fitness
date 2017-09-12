@@ -1,16 +1,33 @@
 "use strict";
 var mongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
 
 module.exports.index = function (req, res) {
-    mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
-    if (err) return console.dir(err);
+    // mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
+    // if (err) return console.dir(err);
 
-    var collection = db.collection('workouts').find({}).toArray(function(err, res) {
-        console.log("derp" + res[1]);
+    //     var collection = db.collection('workouts').find({}).toArray(function(err, res) {
+    //         console.log("derp" + res[1]);
+    //     });
+    // });
+
+    mongoose.connect("mongodb://norgaard.io:27017/fitness");
+
+    var exerciseSchema = mongoose.Schema({
+        id: Number,
+        title: String,
+        description: String,
+        Reps: String,
+        Sets: String,
     });
-});
 
-res.render('index', {title: "hello world"})
+    var workoutSchema = mongoose.Schema({
+        id: Number,
+        title: String,
+        exercises: [exerciseSchema]
+    });
+
+    res.render('index', {title: "hello world"})
 };
 
 module.exports.getExercise = function (req, res) {
