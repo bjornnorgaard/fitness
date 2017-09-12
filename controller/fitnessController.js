@@ -12,7 +12,8 @@ var ExerciseSchema = {
 
 var WorkoutSchema = {
     id: Number,
-    title: String
+    title: String,
+    exercises: [ExerciseSchema]
 };
 
 var WorkoutModel = mongoose.model("Workout", WorkoutSchema);
@@ -29,15 +30,19 @@ module.exports.index = function (req, res) {
                 console.log("index: " + err);
             }
 
-            var viewModel = {
-                workouts: []
-            };
+            workouts.forEach(function(workout) {
+                var id = workout.id;
 
-            for (i = 1; i <= workouts.length; i++) {
-                viewModel.workouts[i] = workouts[i];
-            }
+                exercises.forEach(function(exercise) {
+                    if (exercise.workoutId === id) {
+                        workout.exercises.push(exercise);
+                        console.log(exercise);
+                    }
+                }, this);
 
-            res.render('index', viewModel);
+            }, this);
+
+            res.render('index', {workouts});
         })
     });
 };

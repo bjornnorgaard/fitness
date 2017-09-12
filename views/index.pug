@@ -6,7 +6,6 @@ block content
         h2 First Workout (missing remove button)
 
         .workout-program
-
             .exercise
                 .exercise-name
                     h3 Squat
@@ -20,6 +19,26 @@ block content
             .exercise.add-new-exercise
                 a(href="exercise")
                     h2 + Add exercise
+
+    each w in workouts
+        .workout.card
+            h2= w.title
+
+            .workout-program
+                each e in w.exercises
+                    .exercise
+                        .exercise-name
+                            h3= e.title
+                        .exercise-description
+                            p= e.description
+                        .exercise-sets
+                            p Sets: #{e.sets}
+                        .exercise-reps
+                            p Reps/time: #{e.reps}
+
+                .exercise.add-new-exercise
+                    a(href="exercise")
+                        h2 + Add exercise
 
     .add-workout.card
         a(href="workout")
