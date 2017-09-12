@@ -23,21 +23,23 @@ module.exports.getWorkout = function (req, res) {
 
 module.exports.postWorkout = function (req, res) {
     mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
-    if (err) { return console.dir(err); }
-
-    var collection = db.collection('workouts');
-    var workout = { title: req.body.title }
-    collection.insert(workout, { w: 1}, function(err, res) {
         if (err) {
-            console.log("Error: could not insert workout");
+            return console.dir(err);
         }
-        else {
-            console.log("Success: workout inserted successfully");
-        }
-    });
-});
 
-res.status(201).render('index');
+        var collection = db.collection('workouts');
+        var workout = { title: req.body.title }
+        collection.insert(workout, { w: 1 }, function(err, res) {
+            if (err) {
+                console.log("Error: could not insert workout");
+            }
+            else {
+                console.log("Success: workout inserted successfully");
+            }
+        });
+    });
+
+    res.status(201).render('index');
 }
 
 module.exports.postExercise = function (req, res) {
