@@ -2,11 +2,14 @@ extends layout
 
 block content
 
-    .page-title.card
+    .input.card
+
         h1 Workout
         form(method="post" action="workout")
             p Name it
             input(type="text" name="title" placeholder="Workout name...")
             br
+            p Workout Id
+            input(type="text" name="id" placeholder="Id of workout")
             br
             input(type="submit" value="Submit")
