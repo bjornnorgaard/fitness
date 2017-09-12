@@ -19,7 +19,27 @@ var WorkoutModel = mongoose.model("Workout", WorkoutSchema);
 var ExerciesModel = mongoose.model("Exercise", ExerciseSchema);
 
 module.exports.index = function (req, res) {
-    res.render('index', {title: "hello world"})
+    WorkoutModel.find(function(err, workouts) {
+        if (err) {
+            console.log("index: " + err);
+        }
+
+        ExerciesModel.find(function(err, exercises) {
+            if (err) {
+                console.log("index: " + err);
+            }
+
+            var viewModel = {
+                workouts: []
+            };
+
+            for (i = 1; i <= workouts.length; i++) {
+                viewModel.workouts[i] = workouts[i];
+            }
+
+            res.render('index', viewModel);
+        })
+    });
 };
 
 module.exports.getExercise = function (req, res) {
