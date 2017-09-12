@@ -70,9 +70,9 @@ body {
 .exercise {
     display: grid;
     grid-template-areas:
-    "exercise-name exercise-name exercise-remove"
+    "exercise-name exercise-name exercise-name"
     "exercise-description exercise-description exercise-description"
-    "exercise-sets exercise-reps empty";
+    "exercise-sets exercise-reps exercise-reps";
 
     padding: 0.5em;
     margin-bottom: 1em;

@@ -1,17 +1,16 @@
 "use strict";
-
 var mongoClient = require('mongodb').MongoClient;
 
 module.exports.index = function (req, res) {
     mongoClient.connect("mongodb://norgaard.io:27017/fitness", function(err, db) {
-        if (err) return console.dir(err);
+    if (err) return console.dir(err);
 
-        var collection = db.collection('workouts').find({}).toArray(function(err, res) {
-            console.log("derp" + res[1]);
-        });
+    var collection = db.collection('workouts').find({}).toArray(function(err, res) {
+        console.log("derp" + res[1]);
     });
+});
 
-    res.render('index', {title: "hello world"})
+res.render('index', {title: "hello world"})
 };
 
 module.exports.getExercise = function (req, res) {
