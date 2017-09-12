@@ -1,7 +1,4 @@
-"use strict";
-var mongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
-
 mongoose.connect("mongodb://norgaard.io:27017/fitness");
 
 var ExerciseSchema = {
