@@ -1,25 +1,25 @@
 extends layout
 
 block content
+    each w in workouts
+        .workout.card
+            h2 ID##{w.id} #{w.title}
 
-    .workout.card
-        h2 First Workout (missing remove button)
+            .workout-program
+                each e in w.exercises
+                    .exercise
+                        .exercise-name
+                            h3= e.title
+                        .exercise-description
+                            p= e.description
+                        .exercise-sets
+                            p Sets: #{e.sets}
+                        .exercise-reps
+                            p Reps/time: #{e.reps}
 
-        .workout-program
-
-            .exercise
-                .exercise-name
-                    h3 Squat
-                .exercise-description
-                    p Stand with your feet spread shoulderwidth apart. Lower your body as far as you can by pushing your hips back and bending your knees. Pause, and then slowly push yourself back to the starting position.
-                .exercise-sets
-                    p Sets: 3
-                .exercise-reps
-                    p Reps/time: 20
-
-            .exercise.add-new-exercise
-                a(href="exercise")
-                    h2 + Add exercise
+                .exercise.add-new-exercise
+                    a(href="exercise")
+                        h2 + Add exercise
 
     .add-workout.card
         a(href="workout")

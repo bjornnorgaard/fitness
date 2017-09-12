@@ -12,14 +12,39 @@ var ExerciseSchema = {
 
 var WorkoutSchema = {
     id: Number,
-    title: String
+    title: String,
+    exercises: [ExerciseSchema]
 };
 
 var WorkoutModel = mongoose.model("Workout", WorkoutSchema);
 var ExerciesModel = mongoose.model("Exercise", ExerciseSchema);
 
 module.exports.index = function (req, res) {
-    res.render('index', {title: "hello world"})
+    WorkoutModel.find(function(err, workouts) {
+        if (err) {
+            console.log("index: " + err);
+        }
+
+        ExerciesModel.find(function(err, exercises) {
+            if (err) {
+                console.log("index: " + err);
+            }
+
+            workouts.forEach(function(workout) {
+                var id = workout.id;
+
+                exercises.forEach(function(exercise) {
+                    if (exercise.workoutId === id) {
+                        workout.exercises.push(exercise);
+                        console.log(exercise);
+                    }
+                }, this);
+
+            }, this);
+
+            res.render('index', {workouts});
+        })
+    });
 };
 
 module.exports.getExercise = function (req, res) {
