@@ -5,10 +5,10 @@ Mandatory project for course ITTWEB at ASE.
 Both master and develop branches are continuously deployed to heroku. 
 
 For review:   
-[Link to master deploy](https://ittweb-fitness-prod.herokuapp.com/)  
+[Link to master deploy](https://ittweb-fitness-web-prod.herokuapp.com/)  
 
 For development testing:  
-[Link to develop deploy](https://ittweb-fitness-dev.herokuapp.com/) 
+[Link to develop deploy](https://ittweb-fitness-web-dev.herokuapp.com/) 
 
 ## Git Branching
 There are two main branches in this repository.
